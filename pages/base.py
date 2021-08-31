@@ -15,6 +15,10 @@ class Base:
         self.browser: WebDriver = browser
 
     @step
+    def open_main_page(self):
+        self.browser.get(self.url + self.path)
+
+    @step
     def get_title(self, url):
         self.browser.get(url)
 

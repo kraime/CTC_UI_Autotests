@@ -4,8 +4,9 @@ import logging
 import allure
 from selenium import webdriver
 from utils.allure_helper import AllureCatchLogs
+from webdriver_manager.chrome import ChromeDriverManager
 
-DRIVERS = os.path.expanduser("~/Drivers")
+# DRIVERS = os.path.expanduser("~/Drivers")
 
 
 def pytest_addoption(parser):
@@ -69,7 +70,7 @@ def browser(request):
     driver = None
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
-    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-notifications")
@@ -79,7 +80,7 @@ def browser(request):
     if local == 'true':
         driver = webdriver.Chrome(
             options=chrome_options,
-            executable_path=f"{DRIVERS}/chromedriver"
+            executable_path=ChromeDriverManager().install()
         )
     elif local == 'false':
         driver = webdriver.Remote(
@@ -88,8 +89,7 @@ def browser(request):
         )
 
     driver.set_window_size(1920, 1600)
-    driver.maximize_window()
-    driver.implicitly_wait(5)
+    # driver.implicitly_wait(5)
     logger = logging.getLogger('BrowserLogger')
     logger.info('Browser {} started'.format(browser))
 
