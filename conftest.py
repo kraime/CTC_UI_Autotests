@@ -6,6 +6,7 @@ from selenium import webdriver
 from utils.allure_helper import AllureCatchLogs
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 # DRIVERS = os.path.expanduser("~/Drivers")
 
 

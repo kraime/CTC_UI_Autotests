@@ -8,23 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class HeadermenuPage(Base):
+    path = "/"
 
     @step
-    def check_onair_element(self):
-        self._find_elements(HeadermenuPageLocators.https://ctc.ru/online/)
+    def check_header_container(self):
+        self._find_elements(HeadermenuPageLocators.HEADER_CONTAINER)
 
     @step
-    def check_teleprogramm_element(self):
-        self._find_elements(HeadermenuPageLocators./programm/)
+    def check_header_links(self):
+        header_links = self._find_elements(HeadermenuPageLocators.HEADER_LINKS)
+        assert len(header_links) == 10
 
-    @step
-    def check_show_element(self):
-        self._find_elements(HeadermenuPageLocators.["/collections/show/"])
-
-    @step
-    def check_films_element(self):
-        self._find_elements(HeadermenuPageLocators.["/collections/filmi/"])
-
-    @step
-    def check_multfilms_element(self):
-        self._find_elements(HeadermenuPageLocators.["/collections/multiki/"])
